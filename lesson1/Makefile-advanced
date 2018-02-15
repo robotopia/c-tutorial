@@ -10,7 +10,8 @@ LDLIBS  = -lm            # empty by default
 # all your output binaries together
 TARGETS = hello_world \
 		  stack_memory \
-		  heap_memory
+		  heap_memory \
+		  fileio
 
 # This is the first (and only) recipe in this Makefile, running 'make' will
 # run this recipe by default (i.e. as if you had run 'make all').

@@ -1,0 +1,76 @@
++---------------------------------+
+| Lesson #1: Pointers and Structs |
++---------------------------------+
+
+===========================================
+Act 1: Compiling and Makefiles
+===========================================
+
+> Download repo from
+  (SSH):   git@github.com:robotopia/c-tutorial.git
+  (HTTPS): https://github.com/robotopia/c-tutorial.git
+
+> Navigate to lesson1 directory
+
+> Open hello_world.c in your favourite editor
+  - [Sam: Explain contents, line by line]
+
+> Compile by running:
+  $ gcc hello_world.c
+  Test result by running:
+  $ ./a.out
+
+> Give the compiler the -o option to change the name of your output binary:
+  $ gcc -o hello_world hello_world.c
+
+> Create a Makefile for compiling hello_world.c:
+  Makefile
+  ========
+  hello_world: hello_world.c
+      gcc -o $@ $<
+
+> First remove existing hello_world binary, and run:
+  $ make
+
+> [Sam: step-by-step instruction to use make's implicit variables]
+
+> Compare your result to the file Makefile-advanced
+
+===========================================
+Act 2: Dealing with compiler errors
+===========================================
+
+> In your Makefile, add hello_world_err to your list of TARGETS
+
+> Try to compile hello_world_err by running
+  $ make
+
+> [Sam: take them through compiler errors one by one]
+
+===========================================
+Act 3: C as a memory-manipulation language
+===========================================
+
+> Open stack_memory.c
+
+> [Sam: Explain code, line by line]
+
+> Open heap_memory.c
+
+> [Sam: Explain code, line by line]
+
+===========================================
+Act 4: File I/O and "online" documentation
+===========================================
+
+> Open fileio.c
+
+===========================================
+HOMEWORK:
+===========================================
+
+Write a program that reads in two files containing large matrices, and
+multiplies them together, printing the result to stdout.
+
+Prizes for the fastest code.
+
