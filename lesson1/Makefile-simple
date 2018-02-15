@@ -1,5 +1,0 @@
-hello_world: hello_world.c
-	gcc -o $@ $<
-
-clean:
-	$(RM) *.o $(TARGETS)

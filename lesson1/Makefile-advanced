@@ -1,0 +1,22 @@
+
+## Makefile implicit variables:
+
+#CC      = gcc            # default value is 'cc'
+CFLAGS  = -Wall -Wextra  # empty by default
+LDLIBS  = -lm            # empty by default
+#LDFLAGS =                # empty by default
+
+# "TARGETS" is not a special name, just a commonly used one for collecting
+# all your output binaries together
+TARGETS = hello_world \
+		  stack_memory \
+		  heap_memory
+
+# This is the first (and only) recipe in this Makefile, running 'make' will
+# run this recipe by default (i.e. as if you had run 'make all').
+all: $(TARGETS)
+
+# Boilerplate recipe for cleaning the directory. Gets rid of target binaries
+# and object (.o) files.
+clean:
+	$(RM) $(TARGETS) *.o

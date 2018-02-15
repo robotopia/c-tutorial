@@ -1,6 +1,6 @@
 #include <stdio.h> // <-- This is where the printf() family of functions lives
 
-int main( int argc, char *argv[] )
+int main( )
 {
     // Print out the canonical message to stdout
     printf( "Hello world!\n" );
