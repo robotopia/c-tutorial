@@ -49,11 +49,11 @@ int main( int argc, char *argv[] )
     FILE *f_txt = fopen( txtfile, "w" );
 
     // Allocate memory for a 100x100 matrix
-    int rows = 10, cols = 10;
+    int rows = 100, cols = 100;
     double **M = create_matrix( rows, cols );
 
     // Populate the matrix array with some values
-    make_ripples( double **M, int rows, int cols );
+    make_ripples( M, rows, cols );
 
     // Write out the matrix to the two files
     write_matrix( f_bin, M, rows, cols, BINARY );
@@ -130,7 +130,7 @@ void make_ripples( double **M, int rows, int cols )
     // Now, iterate through the array elements
     int r, c;    // to iterate through (r)ows and (c)olumns, respectively
     for (r = 0; r < rows; r++)
-    for (c = 0; c < rows; c++)
+    for (c = 0; c < cols; c++)
     {
         // In the following, "hypot", "cos", and "M_PI" are all from math.h
         dist = hypot( c-xc, r-yc );
@@ -140,11 +140,20 @@ void make_ripples( double **M, int rows, int cols )
 
 void write_matrix( FILE *f, double **M, int rows, int cols, int write_type )
 {
+    int r, c;
     switch (write_type)
     {
         case BINARY:
+            for (r = 0; r < rows; r++)
+                fwrite( M[r], sizeof(double), cols, f );
             break;
         case ASCII:
+            for (r = 0; r < rows; r++)
+            {
+                for (c = 0; c < cols; c++)
+                    fprintf( f, "%e ", M[r][c] );
+                fprintf( f, "\n" );
+            }
             break;
         default:
             // Any other write_type is not recognised
