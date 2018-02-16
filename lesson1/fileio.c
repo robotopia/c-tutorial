@@ -141,7 +141,7 @@ void make_ripples( double **M, int rows, int cols )
 void write_matrix( FILE *f, double **M, int rows, int cols, int write_type )
 {
     int r, c;
-    switch (write_type)
+    switch (write_type) // an syntactic alternative to  if...elseif...elseif...
     {
         case BINARY:
             for (r = 0; r < rows; r++)
