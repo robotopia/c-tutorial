@@ -1,0 +1,97 @@
+#########################################################################
+# C Mini-tutorial
+#
+# Sam McSweeney, 2018
+#
+# A quick and dirty explanation for how Makefiles work.
+# For a more detailed explanation, see the online manual at
+# https://ftp.gnu.org/old-gnu/Manuals/make-3.80/make.html
+#
+#########################################################################
+
+# <-- This is a comment
+
+# This is a custom variable:
+
+MYVAR = something or other
+
+# Variables can be expanded anywhere in a Makefile using $(...), e.g.
+
+MYVAR2 = $(MYVAR) else
+
+# This is a rule:
+
+hello_world: hello_world.c
+	gcc -o hello_world hello_world.c
+
+# In English, it means:
+#   1. To make the target "hello_world", you'll need the dependency
+#      hello_world.c.
+#   2. If the conditions for running this recipe are met (namely, either
+#      hello_world doesn't exist, or it has a timestamp that is older than
+#      any of its dependencies), then run the "recipe" (bash command) on the
+#      next line.
+
+# Makefile provides several "abbreviations" to avoid needless repetitions, so
+# the below recipe is equivalent to the one above:
+
+hello_world: hello_world.c
+	gcc -o $@ $<
+
+# Here, '$@' expands to the name of the target ('hello_world') and '$<'
+# expands to the name of the first dependency ('hello_world.c'). For other
+# so-called "automatic variables", see:
+#
+# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+#
+# Because Makefile was designed primarily for compiling C (and Fortran?)
+# programs, it also has a bunch of built-in, "implicit" rules that make use of
+# a bunch of "implicit" variables.
+#
+# Consider the rule below, which doesn't have a recipe:
+
+hello_world: hello_world.c
+
+# When 'make' sees this rule, it recognises that the dependency is a C source
+# file, and, since no recipe was supplied, will run the following recipe by
+# default (this is just my guess; refer to docs for exactly what the implicit
+# rule consists of:
+#
+#     $(CC) -o $@ $< $(CFLAGS) $(LDFLAGS)
+#
+# This makes use of the following implicit variables:
+#
+#   CC      (default value = cc)
+#   CFLAGS  (default value = [empty])
+#   LDFLAGS (default value = [empty])
+#
+# These flags can be overridden at the top of a Makefile, e.g.:
+#
+#   CFLAGS = -Wall -Wextra
+#
+# For a list of implicit variables, refer to:
+# https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_10.html
+
+# It is common to have a rule for tidying up a directory:
+
+clean:
+	$(RM) *.o
+
+# $(RM) is an implicit variable that expands to 'rm -f' on most (Linux?)
+# systems. In this case, all C object files (.o) will be be deleted.
+
+# The last thing to mention is that a single Makefile can contain multiple
+# rules. They can be run from the command line by specifying the target, e.g.:
+#
+#  $ make hello_world
+#
+# If no target is specified on the command line, the first recipe will be run.
+# When a rule is begin "run", if a dependency is also listed as a target in
+# another rule, then the "child" rule will be run first.
+#
+# It is common practice to list all the targets that you want to be made by
+# default as the dependencies of an "empty" rule placed at the top of the
+# Makefile, e.g.:
+
+all: hello_world  another_target  something_else
+

@@ -1,6 +1,6 @@
-+---------------------------------+
-| Lesson #1: Pointers and Structs |
-+---------------------------------+
++-----------------------------------+
+| Lesson #1: Pointers and Compiling |
++-----------------------------------+
 
 ===========================================
 Act 1: Compiling and Makefiles
@@ -24,23 +24,37 @@ Act 1: Compiling and Makefiles
   $ gcc -o hello_world hello_world.c
 
 > Create a Makefile for compiling hello_world.c:
-  Makefile
-  ========
-  hello_world: hello_world.c
-      gcc -o $@ $<
+  $ vi Makefile # (or use your favourite text editor)
 
-> First remove existing hello_world binary, and run:
+  Makefile contents:
+  +-------------------------------+
+  |hello_world: hello_world.c     |
+  |    gcc -o $@ $<               |
+  +-------------------------------+
+    ^-- Make sure there is a single tab character ('\t') before 'gcc'
+
+  To see a basic explanation for Makefiles, see the files
+    1) Makefile-explanation, and
+    2) Makefile-advanced
+
+> First remove existing hello_world binary
+  $ rm -f hello_world
+
+  and then run
   $ make
 
-> [Sam: step-by-step instruction to use make's implicit variables]
+  to compile the hello_world program with the Makefile
 
-> Compare your result to the file Makefile-advanced
+> Finally, use my pre-prepared Makefile to compile all the programs in
+  this lesson:
+  $ cp Makefile-advanced Makefile
+  $ make
 
 ===========================================
 Act 2: Dealing with compiler errors
 ===========================================
 
-> In your Makefile, add hello_world_err to your list of TARGETS
+> In your Makefile, add hello_world_err to your TARGETS
 
 > Try to compile hello_world_err by running
   $ make
