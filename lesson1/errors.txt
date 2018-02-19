@@ -1,51 +1,132 @@
-----------------------------------------------------------------------------
-ERROR:
-hello_world_err.c:5:5: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘printf’
-     printf( 'Hello world!\n' );
-
-MEANING:
-gcc has detected that line 5 doesn't make syntactic sense from what followed
-before. Remember that C treats all whitespace the same, and that lines of
-code are delimited by the semicolon (';').
-
-SOLUTION:
-Add a semicolon (';') to the end of line 3.
+INSTRUCTIONS FOR DEBUGGING hello_world_err.c
 
 ----------------------------------------------------------------------------
 ERROR:
-hello_world_err.c:5:5: warning: implicit declaration of function ‘printf’
+
+  hello_world_err.c:5:5: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘printf’
+       printf( 'Hello world!\n' );
 
 MEANING:
-For some reason, the compiler was unable to find a definition for
-the named function. First thought: have I included the correct header files?
+
+  gcc has detected that line 5 doesn't make syntactic sense from what followed
+  before. Remember that C treats all whitespace the same, and that lines of
+  code are delimited by the semicolon (';').
 
 SOLUTION:
-Add the line "#include <stdio.h>" to the beginning of the program
+
+  Add a semicolon (';') to the end of line 3.
 
 ----------------------------------------------------------------------------
 ERROR:
-hello_world_err.c:6:13: warning: character constant too long for its type
+
+  hello_world_err.c:5:5: warning: implicit declaration of function ‘printf’
 
 MEANING:
-Single quotes are only used for single characters, e.g. 'A', which is of
-type "char". Strings (i.e. arrays of characters) must be enclosed in double
-quotes ("example").
+
+  For some reason, the compiler was unable to find a definition for
+  the named function. First thought: have I included the correct header files?
 
 SOLUTION:
-Change the single quotes in the printf statement to double quotes.
+
+  Add the line "#include <stdio.h>" to the beginning of the program
 
 ----------------------------------------------------------------------------
 ERROR:
-hello_world_err.c:4:11: warning: unused variable ‘return_value’
+
+  hello_world_err.c:6:13: warning: character constant too long for its type
 
 MEANING:
-You have declared a variable but have not used it anywhere in your program.
+
+  Single quotes are only used for single characters, e.g. 'A', which is of
+  type "char". Strings (i.e. arrays of characters) must be enclosed in double
+  quotes ("example").
 
 SOLUTION:
-To remove this warning, either use the variable in your program, or remove
-the declaration. In this case, I want you to add the line
-    return return_value;
-before the last closing brace.
+
+  Change the single quotes in the printf statement to double quotes.
+
+----------------------------------------------------------------------------
+ERROR:
+
+  hello_world_err.c:4:11: warning: unused variable ‘return_value’
+
+MEANING:
+
+  You have declared a variable but have not used it anywhere in your program.
+
+SOLUTION:
+
+  To remove this warning, either use the variable in your program, or remove
+  the declaration. In this case, I want you to add the line
+      return return_value;
+  before the last closing brace.
+
+----------------------------------------------------------------------------
+ERROR:
+
+  hello_world_err.c:2:15: warning: unused parameter ‘argc’
+  hello_world_err.c:2:27: warning: unused parameter ‘argv’
+
+MEANING:
+
+  Similarly to "unused variable", this indicates that a variable you have
+  passed into a function (in this case, our Main function) is not used
+  anywhere in that function
+
+SOLUTION:
+
+  Either use the variables in the function, or remove them from the
+  parameter list in the definition. In this case, I want you to remove them,
+  so that you should be left with "int Main( )"
+
+----------------------------------------------------------------------------
+ERROR:
+
+  hello_world_err.c:8:12: warning: ‘return_value’ is used uninitialized in this function
+
+MEANING:
+
+  You have declared, but not initialised, a variable you have used later in
+  the program. In this case, we have used "return_value" in line 12, without
+  setting any value to it beforehand.
+
+SOLUTION:
+
+  Initialise the variable before using it. In this case change the line
+      float return_value;
+  to
+      float return_value = 0;
+
+----------------------------------------------------------------------------
+ERROR:
+
+  /usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../lib/Scrt1.o: In function `_start':
+  (.text+0x20): undefined reference to `main'
+  collect2: error: ld returned 1 exit status
+  make: *** [<builtin>: hello_world_err] Error 1
+
+MEANING:
+
+  This is a linker error ("ld"), which will be talked more about later. This
+  error indicates that no "main" function was found, so the compiler doesn't
+  know where to begin execution.
+
+SOLUTION:
+
+  C is case sensitive, and "Main" is not the same as "main". Lower the case of
+  the 'M'.
 
 ----------------------------------------------------------------------------
 
+Further notes, for the interested:
+
+Implicit conversion between types
+---------------------------------
+
+Note that "return_value" is declared with type float, but is set to an integer
+value (0). C is silently promoting the integer to a float when it return_value
+is initialised. Also, note that main returns a variable of type 'int'. There-
+fore, when return_value is returned out of the function, C is silently demot-
+ing it back into an integer. In this case, the result is the same as if we had
+declared return_value with type 'int', but if we had set it to, say, a value
+of 2.718, main would have returned 2.
