@@ -1,1 +1,5 @@
 To view this lesson, open lesson1.txt and follow the instructions therein.
+
+Make sure you have a C compiler installed on your system (e.g. gcc).
+
+This tutorial was tested with gcc version 7.3.0 on Linux version 4.14.12-1-ARCH.

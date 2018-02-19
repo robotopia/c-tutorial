@@ -1,0 +1,51 @@
+----------------------------------------------------------------------------
+ERROR:
+hello_world_err.c:5:5: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘printf’
+     printf( 'Hello world!\n' );
+
+MEANING:
+gcc has detected that line 5 doesn't make syntactic sense from what followed
+before. Remember that C treats all whitespace the same, and that lines of
+code are delimited by the semicolon (';').
+
+SOLUTION:
+Add a semicolon (';') to the end of line 3.
+
+----------------------------------------------------------------------------
+ERROR:
+hello_world_err.c:5:5: warning: implicit declaration of function ‘printf’
+
+MEANING:
+For some reason, the compiler was unable to find a definition for
+the named function. First thought: have I included the correct header files?
+
+SOLUTION:
+Add the line "#include <stdio.h>" to the beginning of the program
+
+----------------------------------------------------------------------------
+ERROR:
+hello_world_err.c:6:13: warning: character constant too long for its type
+
+MEANING:
+Single quotes are only used for single characters, e.g. 'A', which is of
+type "char". Strings (i.e. arrays of characters) must be enclosed in double
+quotes ("example").
+
+SOLUTION:
+Change the single quotes in the printf statement to double quotes.
+
+----------------------------------------------------------------------------
+ERROR:
+hello_world_err.c:4:11: warning: unused variable ‘return_value’
+
+MEANING:
+You have declared a variable but have not used it anywhere in your program.
+
+SOLUTION:
+To remove this warning, either use the variable in your program, or remove
+the declaration. In this case, I want you to add the line
+    return return_value;
+before the last closing brace.
+
+----------------------------------------------------------------------------
+

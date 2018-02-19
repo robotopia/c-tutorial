@@ -59,7 +59,16 @@ Act 2: Dealing with compiler errors
 > Try to compile hello_world_err by running
   $ make
 
-> [Sam: take them through compiler errors one by one]
+> Rule of thumb: start from top of error/warning list and work down. Sometimes
+  fixing one error solves later errors.
+
+> Format of error message:
+  {file}:{line_no}:{col_no}: warning/error: {error message}
+      {context for error}
+
+> Work through the examples of errors listed in the file "error.txt". These
+  may not look identical to yours, since they're obviously compiler-dependent).
+  Upon applying each solution, recompile with 'make'.
 
 ===========================================
 Act 3: C as a memory-manipulation language
