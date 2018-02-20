@@ -46,13 +46,13 @@ int main( )
        a Makefile comes in so handy, since all you have to remember is 'make')
     */
 
-    //example1(); // Basic variable types, memory addresses, and '&' operator
+    example1(); // Basic variable types, memory addresses, and '&' operator
 
     //example2(); // The pointer variable type
 
     //example3(); // Creating 1D arrays on the stack
 
-    example4(); // Creating 2D arrays on the stack
+    //example4(); // Creating 2D arrays on the stack
 
     return 0;
 }

@@ -90,7 +90,7 @@ Act 3: C as a memory-manipulation language
 Act 4: File I/O and "online" documentation
 ===========================================
 
-> Open fileio.c
+> Open fileio.c and work through the code and the accompanying comments.
 
 ===========================================
 HOMEWORK:
