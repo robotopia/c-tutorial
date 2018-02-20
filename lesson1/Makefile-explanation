@@ -63,6 +63,7 @@ hello_world: hello_world.c
 #
 #   CC      (default value = cc)
 #   CFLAGS  (default value = [empty])
+#   LDLIBS  (default value = [empty])
 #   LDFLAGS (default value = [empty])
 #
 # These flags can be overridden at the top of a Makefile, e.g.:
