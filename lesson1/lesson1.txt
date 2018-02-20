@@ -12,8 +12,8 @@ Act 1: Compiling and Makefiles
 
 > Navigate to lesson1 directory
 
-> Open hello_world.c in your favourite editor
-  - [Sam: Explain contents, line by line]
+> Open hello_world.c in your favourite editor and work through the code
+  and comments to understand how this program works.
 
 > Compile by running:
   $ gcc hello_world.c
