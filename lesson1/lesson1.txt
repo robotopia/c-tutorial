@@ -67,7 +67,7 @@ Act 2: Dealing with compiler errors
       {context for error}
 
 > Work through the examples of errors listed in the file "error.txt". These
-  may not look identical to yours, since they're obviously compiler-dependent).
+  may not look identical to yours, since they're obviously compiler-dependent.
   Upon applying each solution, recompile with 'make'.
 
 ===========================================
@@ -76,7 +76,9 @@ Act 3: C as a memory-manipulation language
 
 > Open stack_memory.c
 
-> [Sam: Explain code, line by line]
+> Uncomment, in turn, each "example" function in main, recompiling (by running
+  'make' each time), and working through the code, the comments, and the
+  program output.
 
 > Open heap_memory.c
 
