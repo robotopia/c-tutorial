@@ -13,7 +13,7 @@ TARGETS = hello_world \
 		  heap_memory \
 		  fileio
 
-# This is the first (and only) recipe in this Makefile, running 'make' will
+# This is the first recipe in this Makefile, running 'make' will
 # run this recipe by default (i.e. as if you had run 'make all').
 all: $(TARGETS)
 
