@@ -96,8 +96,6 @@ Act 4: File I/O and "online" documentation
 HOMEWORK:
 ===========================================
 
-Write a program that reads in two files containing large matrices, and
-multiplies them together, printing the result to stdout.
-
-Prizes for the fastest code.
+Write a program that reads in one of the output files from the fileio.c
+program, squares it, and prints the result to stdout.
 
