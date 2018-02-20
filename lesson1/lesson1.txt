@@ -2,9 +2,9 @@
 | Lesson #1: Pointers and Compiling |
 +-----------------------------------+
 
-===========================================
+===============================
 Act 1: Compiling and Makefiles
-===========================================
+===============================
 
 > Download repo from
   (SSH):   git@github.com:robotopia/c-tutorial.git
@@ -50,9 +50,9 @@ Act 1: Compiling and Makefiles
   $ cp Makefile-advanced Makefile
   $ make
 
-===========================================
+====================================
 Act 2: Dealing with compiler errors
-===========================================
+====================================
 
 > In your Makefile, add hello_world_err to your TARGETS
 
@@ -86,15 +86,15 @@ Act 3: C as a memory-manipulation language
   'make' each time), and working through the code, the comments, and the
   program output.
 
-===========================================
-Act 4: File I/O and "online" documentation
-===========================================
+=======================================================================
+Act 4: File I/O and "online" documentation (optional, if there's time)
+=======================================================================
 
 > Open fileio.c and work through the code and the accompanying comments.
 
-===========================================
-HOMEWORK:
-===========================================
+=====================
+HOMEWORK: (optional)
+=====================
 
 Write a program that reads in one of the output files from the fileio.c
 program, squares it, and prints the result to stdout.
