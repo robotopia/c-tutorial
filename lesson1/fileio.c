@@ -1,22 +1,36 @@
-/***********************************************
- * Example of file I/O
- * Written for C tutorial @ ICRAR
+/*****************************************************************************
+ * C Mini-tutorial
+ * ---------------
  *
  * Sam McSweeney, 2018
  *
+ * This is a mini tutorial aimed primarily at scientists who are familiar with
+ * a programming language already (usually Python), and who want to understand
+ * the C language and syntax a bit better.
+ *
  * This program generates a 100x100 matrix, populates it with values,
  * and writes it out to two files: one in binary and one in ascii.
- **********************************************/
+ *
+ *****************************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+
+/* Below are "preprocessor macros". The first stage of the compiler is the
+   preprocessing stage, in which these macros are expanded in the rest of the
+   code. That is, MAX_STR_LENGTH, wherever it occurs, is replaced by 1024,
+   etc. In fact, the above #include statements are also preprocessor direct-
+   ives, which literally import the contents of the named files into the
+   code.
+*/
 
 #define MAX_STR_LENGTH 1024
 
 #define BINARY 1
 #define ASCII  2
 
+// Some function prototypes
 void usage();
 
 double **create_matrix( int, int );
