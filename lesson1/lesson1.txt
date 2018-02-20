@@ -82,7 +82,9 @@ Act 3: C as a memory-manipulation language
 
 > Open heap_memory.c
 
-> [Sam: Explain code, line by line]
+> Uncomment, in turn, each "example" function in main, recompiling (by running
+  'make' each time), and working through the code, the comments, and the
+  program output.
 
 ===========================================
 Act 4: File I/O and "online" documentation
