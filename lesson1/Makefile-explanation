@@ -73,7 +73,8 @@ hello_world: hello_world.c
 # For a list of implicit variables, refer to:
 # https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_10.html
 
-# It is common to have a rule for tidying up a directory:
+# The last thing to mention is that a single Makefile can contain multiple
+# rules. For example, It is common to have a rule for tidying up a directory:
 
 clean:
 	$(RM) *.o
@@ -81,13 +82,13 @@ clean:
 # $(RM) is an implicit variable that expands to 'rm -f' on most (Linux?)
 # systems. In this case, all C object files (.o) will be be deleted.
 
-# The last thing to mention is that a single Makefile can contain multiple
-# rules. They can be run from the command line by specifying the target, e.g.:
+# Rules can be run from the command line by explicitly specifying the target,
+# such as:
 #
 #  $ make hello_world
 #
-# If no target is specified on the command line, the first recipe will be run.
-# When a rule is begin "run", if a dependency is also listed as a target in
+# If no target is specified on the command line, the first rule is run.
+# When a rule is run, if a dependency is also listed as a target in
 # another rule, then the "child" rule will be run first.
 #
 # It is common practice to list all the targets that you want to be made by
