@@ -1,0 +1,59 @@
++--------------------------------------------------------+
+| Lesson #2: Header Files, Libraries, Structs, Segfaults |
++--------------------------------------------------------+
+
+======================
+Act 1: Large projects
+======================
+
+> The compiler works in (at least) two stages:
+    1) Convert each function's code into binary
+    2) Link all the function calls to the functions themselves
+  Let's see this in action.
+
+> Open mymath.c to see some very simply maths functions.
+
+> Let's make gcc only do the first stage, but not the second stage, by using
+  gcc's -c option. The output will be a so-called "object file", with the .o
+  extension.
+
+  $ gcc -c mymath.c
+
+> Let's now try to write a bonafide program that uses the functions we just
+  wrote. We're going to do this the WRONG way first. Open up mymath_program.c
+  and insert the line
+
+    #include "mymath.c"
+
+  Make sure you use "..." instead of <...>. Both of them have the same
+  function, namely, to insert the contents of the named file; the difference
+  is that <...> will tell the compiler to look first in the standard places
+  for the file (like /usr/lib, /usr/local/lib, etc.), whereas "..." will make
+  the compiler look in the current directory first, before looking in the
+  standard places.
+
+> Why is this the wrong way? I guess because if you had a complicated project
+  that involved many different programs all importing "mymath.c", you are
+  essentially getting the compiler to recompile the contents of "mymath.c"
+  many times over, whereas the cleaner, more efficient way of doing it would
+  be to compile the "mymath.c" code just once, and then link it to all the
+  other functions that need it. So let's do it that way.
+
+> Now let's make a header file for mymath.c. Start a new file, "mymath.h", and
+  write the following in it:
+  +-----------------------------------------+
+  | #ifndef MYMATH_H                        |
+  | #define MYMATH_H                        |
+  |                                         |
+  | /* Function prototypes */               |
+  | double add     ( double, double );      |
+  | double subtract( double, double );      |
+  | double multiply( double, double );      |
+  | double divide  ( double, double );      |
+  |                                         |
+  | #endif                                  |
+  +-----------------------------------------+
+
+> Now change mymath_program.c so that it includes the header file instead of
+  the source file:
+    #include "mymath.h"
