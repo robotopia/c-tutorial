@@ -53,7 +53,30 @@ Act 1: Large projects
   |                                         |
   | #endif                                  |
   +-----------------------------------------+
+  The reason for the #ifndef, etc., is to avoid the possibility of importing
+  the header file more than once into the same source file (which would result
+  in errors about having multiple definitions of the same functions). You can
+  treat the first two lines and the last line as boiler-plate code that you
+  should include in all your header files.
 
 > Now change mymath_program.c so that it includes the header file instead of
   the source file:
+
     #include "mymath.h"
+
+  Now, when we do the first stage of compiling for mymath_program.c, only the
+  parts source code in our main function will be compiled into binary, because
+  mymath_program.c can't "see" the source code for the functions, and can only
+  see the function prototypes.
+
+  $ gcc -c mymath_program.c
+
+> At this point, you should have two object files:
+    1) mymath.o
+    2) mymath_program.o
+  Let's link them together:
+
+  $ gcc mymath_program.o mymath.o -o mymath_program
+
+> And now we've done the whole compilation "manually", as it were. We COULD
+achieved the ... <ORDER MATTERS>
