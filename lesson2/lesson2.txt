@@ -214,3 +214,10 @@ Act 3: Dealing with segfaults
   that even though you wrote your code to be deterministic, it runs with
   different output / errors each time. This is a big clue that you are writing
   to a memory address that is interfering with the running of your program.
+
+===============
+Act 4: Structs
+===============
+
+> Structs are C's way of creating custom, composite data types. For example,
+  you might define a struct called "point2D" that 
