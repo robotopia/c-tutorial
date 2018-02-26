@@ -32,6 +32,11 @@ Act 1: Large projects
   the compiler look in the current directory first, before looking in the
   standard places.
 
+  Compile it and run it:
+
+  $ gcc -o mymath_program mymath_program.c
+  $ ./mymath_program
+
 > Why is this the wrong way? I guess because if you had a complicated project
   that involved many different programs all importing "mymath.c", you are
   essentially getting the compiler to recompile the contents of "mymath.c"
