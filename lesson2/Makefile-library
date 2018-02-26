@@ -1,0 +1,21 @@
+CC      = gcc
+CFLAGS  = -Wall -Wextra
+LDFLAGS = -L.
+LDLIBS  = -lmymath
+
+# An explicit rule, because I want the Makefile to make libmymath.a if it
+# doesn't already exist. The implicit rule for making programs out of C source
+# files uses $^ (expands to ALL dependencies) instead of $< (expands to just
+# the first dependency), so I'm writing out my recipe in full.
+
+mymath_program: mymath_program.c  mymath.h  libmymath.a
+	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+
+# The rule for making the library:
+
+libmymath.a: mymath.o
+	$(AR) rcs $@ $<
+
+# And, as usual, the "clean" rule:
+clean:
+	$(RM) *.o libmymath.a

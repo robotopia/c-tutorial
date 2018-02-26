@@ -86,3 +86,67 @@ Act 1: Large projects
 
 > (Optional:) To see how you would do this in a Makefile, open up the file
   Makefile-mymath and study the code and the accompanying comments.
+
+======================================
+Act 2: Making libraries for later use
+======================================
+
+> As we've seen, the object files contain the binary translation of all your
+  functions. Suppose someone wanted to write a program that makes use of the
+  functions you have written, but you didn't want to give them the source
+  code. Assuming they were working on the same computer architecture as you,
+  you would only have to give them the header file with the function proto-
+  types, and the already-compiled object files.
+
+> This is, in fact, what happens. The only difference is that instead of ship-
+  ping the object files as is, they are first bundled together into a single
+  file called a library. You can recognise library files because their names
+  follow the following convention. They are prefaced with "lib", and their
+  extension is either .a or .so depending on whether they are a "static" or
+  a "shared" library, respectively. For the purposes of this tutorial, we
+  won't be discussing the difference between the two types of libraries, but
+  we will just make a "static" library (the default).
+
+> The *nix utility for bundling object files into libraries is called "ar"
+  (short for "archiver"). Its first argument is a string of letters that
+  tell the archiver what you want to do with it. The full list can be seen
+  in the man page for ar, but here are the highlights:
+
+    r: insert into archive
+    c: create a new archive
+    s: add or update the archive index
+
+  So the command for adding the object file "mymath.o" to a new archive is
+
+  $ ar rcs libmymath.a mymath.o
+
+  Now you have the file libmymath.a which you can ship with your header file
+  to anyone who wants to write code based on your work.
+
+> Now we will see how to use someone else's library in OUR code. Once you've
+  successfully made the mymath library, go ahead and delete the source code
+  file mymath.c (don't worry, if you ever want to get it back, you can always
+  write "git checkout mymath.c" and it will be magically restored!). Also, get
+  rid of any object files.
+
+  $ rm mymath.c
+  $ rm *.o
+
+  Now, the only place the definitions exist for our add/subtract/etc functions
+  is in the library file libmymath.a.
+
+> We can now try to recompile mymath_program, using the library. The gcc
+  option for linking to libraries is "-l".
+
+  IMPORTANT: The argument that you pass to -l is NOT the name of the library
+             file itself, but the "middle bit" of it, i.e. without the "lib"
+             prefix and without the ".a" ending.
+
+  So, our command for compiling mymath_program and linking the functions we've
+  called in it to the functions defined in the library is:
+
+  $ gcc -o mymath_program mymath_program.c -L. -lmymath
+
+  The -L option is used to tell the linker where to look for the libraries (if
+  it can't find them in the usual places, /usr/lib, /usr/share/lib, etc.). The
+  dot after the -L just means "this directory".
