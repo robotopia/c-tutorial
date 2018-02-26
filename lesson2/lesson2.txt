@@ -220,4 +220,15 @@ Act 4: Structs
 ===============
 
 > Structs are C's way of creating custom, composite data types. For example,
-  you might define a struct called "point2D" that 
+  you might define a struct called "point2D" that is made up of two doubles,
+  which you call "x" and "y".
+
+> Open up struct.c to see an example of structs and how they can be used to
+  write readable and more easily maintainable code.
+
+> Compile and run struct.c:
+
+  $ gcc struct.c -o struct -Wall -Wextra
+  $ ./struct
+
+  You should get the answer: R = { 5.5, -3.5, 0.5 }
