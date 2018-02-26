@@ -1,5 +1,21 @@
+/*****************************************************************************
+ * C Mini-tutorial
+ * ---------------
+ *
+ * Sam McSweeney, 2018
+ *
+ * This is a mini tutorial aimed primarily at scientists who are familiar with
+ * a programming language already (usually Python), and who want to understand
+ * the C language and syntax a bit better.
+ *
+ * This program is designed to demonstrate how to keep your code in several
+ * different source files and how to link them together when compiling. It's
+ * function is trivial: it takes two numbers, and performs +,-,*,/ on them
+ * using custom-made functions defined in mymath.c.
+ *
+ *****************************************************************************/
+
 #include <stdio.h>
-#include "mymath.h"
 
 int main()
 /* A demonstration of the functions written in mymath.c" */
