@@ -198,4 +198,19 @@ Act 3: Dealing with segfaults
   that allow you to run your code line by line, and you will immediately
   know where the error occurred.
 
-> A third option is to use a few of the fancier
+> A third option is to use a few of the fancier options of gcc. There is, for
+  instance, an option called -fsanitize=address, whose purpose is to detect
+  memory errors at run time. This option makes use of a library called "asan",
+  so when you include the -fsanitize=address option, you also have to add
+  -lasan.
+
+  $ gcc -o segfault segfault.c -Wall -Wextra -fsanitize=address -lasan
+
+  Now when you run it, you get something much more verbose, and hopefully more
+  meaningful, than just the "Segmentation fault" message.
+
+> Another thing to keep in mind is that segfaults can occur any time your
+  program accesses a non-allocated memory address. Sometimes, you might find
+  that even though you wrote your code to be deterministic, it runs with
+  different output / errors each time. This is a big clue that you are writing
+  to a memory address that is interfering with the running of your program.
