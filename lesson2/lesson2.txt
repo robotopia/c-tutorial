@@ -150,3 +150,23 @@ Act 2: Making libraries for later use
   The -L option is used to tell the linker where to look for the libraries (if
   it can't find them in the usual places, /usr/lib, /usr/share/lib, etc.). The
   dot after the -L just means "this directory".
+
+> (Optional:) To see how you can do this in a Makefile, open up the file
+  Makefile-library and study the code and the accompanying comments.
+
+==============================
+Act 3: Dealing with segfaults
+==============================
+
+> Open up segfault.c to see a program that will attempt to access a forbidden
+  memory address (namely, memory address 0x00).
+
+> Compile it using all the warning options:
+
+  $ gcc -o segfault segfault.c -Wall -Wextra
+
+  Notice that no warnings were given!
+
+> Run the program and experience the joy of getting a segfault!
+
+  $ ./segfault
