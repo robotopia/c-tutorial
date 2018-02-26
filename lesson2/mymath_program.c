@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "mymath.h"
 
-void main()
+int main()
 /* A demonstration of the functions written in mymath.c" */
 {
     // Make some numbers
@@ -17,4 +18,7 @@ void main()
     printf( "x - y = %.1lf\n", s );
     printf( "x * y = %.1lf\n", m );
     printf( "x / y = %.2lf\n", d );
+
+    // Return success!
+    return 0;
 }

@@ -1,0 +1,36 @@
+# What you'll see in this Makefile, when you run it, is that it is equivalent
+# to doing the compilation steps separately (i.e. compiling and then linking).
+
+# Just like before, I'm going to turn on warnings by making use of the
+# implicit variable CFLAGS, which passes these options to the C compiler.
+CC     = gcc
+CFLAGS = -Wall -Wextra
+
+# Also just like before, I will keep a list of target binaries that I want
+# this Makefile to make.
+TARGETS = mymath_program
+
+# Unlike in the one-source-code case, there's no way for Makefile to know
+# which source code files depend on which other source code files. One way to
+# do this is to list explicitly which object files each binary depends on, as
+# is the following:
+
+#mymath_program: mymath_program.o mymath.o
+
+# Makefile has implicit rules for making .o files, just as it knew how to
+# handle .c files. The above approach is fine, but if you have a lot of
+# binaries you want to make, and if they all depend on different subsets of
+# object files, you'll need a rule for each one. As it turns out, it doesn't
+# cost anything to link object files to a binary if the binary doesn't
+# actually use any of the code in the object file, so a more efficient way
+# is to assume that ALL your targets depend on ALL your object files, like
+# this:
+
+OBJECTS = mymath.o \
+		  mymath_program.o
+
+$(TARGETS): $(OBJECTS)
+
+# And, of course, here is my boiler-plate rule for cleaning up afterwards:
+clean:
+	$(RM) *.o $(TARGETS)

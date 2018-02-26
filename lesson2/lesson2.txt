@@ -78,5 +78,11 @@ Act 1: Large projects
 
   $ gcc mymath_program.o mymath.o -o mymath_program
 
-> And now we've done the whole compilation "manually", as it were. We COULD
-achieved the ... <ORDER MATTERS>
+> And now we've done the whole compilation "manually", as it were. The command
+
+  $ gcc mymath_program.c mymath.c -o mymath_program
+
+  is actually doing all the steps in one fell swoop.
+
+> (Optional:) To see how you would do this in a Makefile, open up the file
+  Makefile-mymath and study the code and the accompanying comments.
