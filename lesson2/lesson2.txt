@@ -170,3 +170,32 @@ Act 3: Dealing with segfaults
 > Run the program and experience the joy of getting a segfault!
 
   $ ./segfault
+
+> Since the segfault happened without any hint of where, or why, it happened,
+  they can be difficult to debug. The most basic approach you can take is to
+  insert printf statements throughout your code to try and figure out when it
+  crashes. This is usually not the most efficient approach, but can be useful
+  for a first-order analysis.
+
+  Inbetween the four lines of code in the main() function of segfault.c, add a
+  unique printf statement, e.g.
+
+    fprintf( stderr, "checkpoint 1\n" );
+    fprintf( stderr, "checkpoint 2\n" );
+    etc.
+
+  Notice that I'm using fprintf instead of printf. fprintf is the same as
+  printf, except that you can specify which file stream to write to. In fact,
+  printf is the same as fprintf( stdout, ... ).
+
+  Now compile and run the code again, and you should see that the last printed
+  output is the one that you inserted just before the line
+
+    int i = *ptr;
+
+> A better way to debug a segfault is to use a bona fide IDE (Integrated
+  Development Environment), such as Eclipse, which have built in debuggers
+  that allow you to run your code line by line, and you will immediately
+  know where the error occurred.
+
+> A third option is to use a few of the fancier
