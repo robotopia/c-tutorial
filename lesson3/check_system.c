@@ -16,7 +16,8 @@
  *
  *****************************************************************************/
 
-#include <stdio.h>  /* <-- We've met this one many times now. This preprocessor
+#include <stdlib.h>
+#include <stdio.h>  /* <-- We've met these many times now. This preprocessor
                            directive imports the contents of the named file
                            into this file. */
 #include "version.h"
@@ -114,6 +115,7 @@ int main()
                     printf( "%s\n", INSULT );
                 break;
             case QUIT:
+                exit(EXIT_SUCCESS);
                 break;
         }
     }
