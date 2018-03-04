@@ -95,20 +95,17 @@ int main()
     menu_choice mc = DEFAULT;
     while (1)
     {
-        do
-        {
-            printf( "? " );
-        } while ((scanf( "%d", &mc ) != 1));
-
-#ifdef VERBOSE
-    fprintf( stderr, "[VERBOSE] Valid input received\n" );
-#endif
+        printf( "? " );
+        scanf( "%d", &mc );
 
         switch (mc)
         {
             case LINUX:
             case MAC:
             case WINDOWS:
+#ifdef VERBOSE
+    fprintf( stderr, "[VERBOSE] Valid input received\n" );
+#endif
                 if (mc != CORRECT_CHOICE)
                     printf( "LIAR!\n" );
                 else
@@ -116,6 +113,11 @@ int main()
                 break;
             case QUIT:
                 exit(EXIT_SUCCESS);
+                break;
+            default:
+#ifdef VERBOSE
+    fprintf( stderr, "[VERBOSE] Invalid input received\n" );
+#endif
                 break;
         }
     }
