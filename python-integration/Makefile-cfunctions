@@ -1,0 +1,8 @@
+CC =     gcc                       # Use the gcc compiler
+CFLAGS = -O2 -shared -fPIC -Wall -Wextra # Options for the C Compiler
+#               ^
+#               |
+#               ---- Important flag for reading it in python. Creates "shared" library with extension .so
+
+cfunctions: cfunctions.c
+	$(CC) $(CFLAGS) $< -o $@.so
