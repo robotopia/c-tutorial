@@ -97,7 +97,8 @@ Act 3: C Standard Library whistle stop tour
 
 > Now for the tour.
 
-  * stdlib.h:  memory management, random numbers, atoi/atof, exit(), ...
+  * stdlib.h:  memory management, random numbers, atoi/atof, exit,
+               qsort, ...
   * stdio.h:   I/O for files, stdout, stderr.
   * math.h:    trig functions, floor/ceil, exp/log, error function, gamma
                function, sqrt, modulus, ...
