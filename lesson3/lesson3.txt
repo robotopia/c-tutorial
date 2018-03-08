@@ -1,0 +1,124 @@
++----------------------------------------------------------------------------+
+| Lesson #3: Preprocessor directives, macros, OpenMP, the C Standard Library |
++----------------------------------------------------------------------------+
+
+==========================================
+Act 1: Preprocessor directives and macros
+==========================================
+
+> We've talked about the two stages of compiling in the previous lesson:
+    1) compiling (i.e. converting your code into binary, aka "assembling")
+    2) linking
+  But there is actually a preparation stage that happens before any of that,
+  which is called the pre-processing stage. What happens in this stage is that
+  it converts all of your preprocessor directives (which is any line that
+  begins with a '#') into code. Only then is the resulting code actually
+  passed on to the compiler.
+
+> The program check_system.c is full of preprocessor directives, and we will
+  go through it to see how they work. But first, let's compile and run it:
+
+  $ gcc -Wall -Wextra check_system.c -o check_system
+  $ ./check_system
+
+  You should find that the program behaves differently depending on what
+  system you're using (Windows, Mac, or Linux).
+
+> Open check_system.c and go through the code (and comments) to learn about
+  the more common types of preprocessor directives and how to use them.
+
+> You can make gcc *only* do the preproccessing stage by supplying the -E
+  option:
+
+  $ gcc -E check_system.c -o check_system.i
+
+  Open up check_system.i and take a look!
+
+> Now let's define the VERBOSE token from the command line, using gcc's -D
+  option:
+
+  $ gcc -DVERBOSE -Wall -Wextra check_system.c -o check_system
+  $ ./check_system
+
+==============
+Act 2: OpenMP
+==============
+
+> This is not an OpenMP tutorial, so we won't go into any detail here. Kristof
+  has very kindly allowed me to use his code for the solution to the
+  programming challenge to demonstrate how to use OpenMP in C code.
+
+> The original code is in q14.c, which can be compiled and run with
+
+  $ gcc -Wall -Wextra q14.c -o q14
+  $ ./q14
+
+  The authors of OpenMP have designed it so that everything is accomplished
+  with #pragma directives. Compare the differences between q14.c and
+  q14-openmp.c.
+
+> Compiling OpenMP code requires that you:
+    1) #include <omp.h>
+    2) supply the -fopenmp argument to gcc
+
+> Compile and run it with
+
+  $ gcc -Wall -Wextra -fopenmp q14-openmp.c -o q14-openmp
+  $ ./q14-openmp
+
+============================================
+Act 3: C Standard Library whistle stop tour
+============================================
+
+> All the functions available in the C Standard Library have "online" help in
+  the form of man pages (on *nix-based systems). For example, you can see the
+  contents of an include file by looking at its man page:
+
+  $ man math.h
+
+> And each function has its own man page as well. For example,
+
+  $ man sqrt
+
+> Sometimes there are functions that share their name with programs. For
+  example,
+
+  $ man printf
+
+  will give you the *program* "printf" instead of the C function. To get
+  around this, the inventors of man pages put all the C Standard Library
+  functions into "section 3", so you can get to it via:
+
+  $ man 3 printf
+
+  (To see the man sections, look at the man page for man:)
+
+  $ man man
+
+> Now for the tour.
+
+  * stdlib.h:  memory management, random numbers, atoi/atof, exit(), ...
+  * stdio.h:   I/O for files, stdout, stderr.
+  * math.h:    trig functions, floor/ceil, exp/log, error function, gamma
+               function, sqrt, modulus, ...
+  * string.h:  copying, manipulating strings (char arrays), searching for
+               substrings, comparing strings, ...
+  * complex.h: support for complex numbers
+  * threads.h: create/destroy process threads ("manual OpenMP")
+  * unistd.h:  [non-standard designed originally for Unix] manipulating
+               the file system, getopt, ...
+  * time.h:    date and time handling functions
+  * ...
+
+> A quick Google search will give you the complete list of header files
+  included in the Standard Library.
+
+===============================================
+Act 4: Interfacing with Python (Steven Murray)
+===============================================
+
+> Change directory:
+
+  $ cd ../python-integration
+
+> Listen to Steven!
