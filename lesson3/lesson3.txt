@@ -27,6 +27,13 @@ Act 1: Preprocessor directives and macros
 > Open check_system.c and go through the code (and comments) to learn about
   the more common types of preprocessor directives and how to use them.
 
+> You can make gcc *only* do the preproccessing stage by supplying the -E
+  option:
+
+  $ gcc -E check_system.c -o check_system.i
+
+  Open up check_system.i and take a look!
+
 > Now let's define the VERBOSE token from the command line, using gcc's -D
   option:
 
@@ -59,9 +66,59 @@ Act 2: OpenMP
   $ gcc -Wall -Wextra -fopenmp q14-openmp.c -o q14-openmp
   $ ./q14-openmp
 
- - C man pages
+============================================
+Act 3: C Standard Library whistle stop tour
+============================================
+
+> All the functions available in the C Standard Library have "online" help in
+  the form of man pages (on *nix-based systems). For example, you can see the
+  contents of an include file by looking at its man page:
+
+  $ man math.h
+
+> And each function has its own man page as well. For example,
+
+  $ man sqrt
+
+> Sometimes there are functions that share their name with programs. For
+  example,
+
+  $ man printf
+
+  will give you the *program* "printf" instead of the C function. To get
+  around this, the inventors of man pages put all the C Standard Library
+  functions into "section 3", so you can get to it via:
+
+  $ man 3 printf
+
+  (To see the man sections, look at the man page for man:)
+
+  $ man man
+
+> Now for the tour.
+
+  * stdlib.h:  memory management, random numbers, atoi/atof, exit(), ...
+  * stdio.h:   I/O for files, stdout, stderr.
+  * math.h:    trig functions, floor/ceil, exp/log, error function, gamma
+               function, sqrt, modulus, ...
+  * string.h:  copying, manipulating strings (char arrays), searching for
+               substrings, comparing strings, ...
+  * complex.h: support for complex numbers
+  * threads.h: create/destroy process threads ("manual OpenMP")
+  * unistd.h:  [non-standard designed originally for Unix] manipulating
+               the file system, getopt, ...
+  * time.h:    date and time handling functions
+  * ...
+
+> A quick Google search will give you the complete list of header files
+  included in the Standard Library.
 
 ===============================================
 Act 4: Interfacing with Python (Steven Murray)
 ===============================================
 
+> Change directory:
+
+  $ cd ../python-integration
+
+> Listen to Steven!
