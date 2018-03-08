@@ -134,6 +134,7 @@ void print_menu()
 int main()
 {
 #ifdef VERBOSE
+    fprintf( stderr, "[VERBOSE] This is check_system.c, version %s\n", MY_VERSION );
     fprintf( stderr, "[VERBOSE] VERBOSE is switched on\n" );
 #endif
 
